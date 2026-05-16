@@ -1,25 +1,28 @@
 
 import Link from "next/link";
 
-export default function CatalogPage() {
   type Movie = {
     id: number;
     title: string;
-    year: number;
+    body: string;
   };
 
-  const movies: Movie[] = [
-    { id: 1, title: "The House That Jack Built", year: 2018 },
-    { id: 2, title: "Dogville", year: 2003 },
-    { id: 3, title: "The Thing", year: 1982 },
-    { id: 4, title: "The Room", year: 2003 },
-    { id: 5, title: "The Lobster", year: 2015 },
-  ];
+export default  async function CatalogPage() {
+
+
+ const response = await fetch(
+    "https://jsonplaceholder.typicode.com/posts?_limit=10",
+    { cache: 'no-store'}
+ );
+
+ const movies: Movie[] = await response.json()
+
   return (
     <>
       {movies.map((movie) => (
-        <Link className="" key={movie.id} href={`/catalog/${movie.id}`}>
-          {movie.title} year of {movie.year}
+          <Link className="border rounded p-4 mb-2 block" key={movie.id} href={`/catalog/${movie.id}`}>
+            <h2 className="font-bold mb-1">{movie.title}</h2>
+            <p>{movie.body}</p>
         </Link>
       ))}
     </>
