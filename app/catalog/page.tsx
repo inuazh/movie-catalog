@@ -1,7 +1,7 @@
 
 import Link from "next/link";
 
-  type Movie = {
+ export type Movie = {
     id: number;
     title: string;
     body: string;
