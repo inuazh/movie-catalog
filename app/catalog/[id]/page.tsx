@@ -1,3 +1,5 @@
+import FavoriteButton  from "@/components/FavoriteButton";
+
 interface Props {
     params: Promise<{id: string}>
 }
@@ -8,6 +10,7 @@ export default async function MoviePage({params}: Props) {
   return (
     <>
     cinema #{id}
+    <FavoriteButton/>
     </>
   );
 }
