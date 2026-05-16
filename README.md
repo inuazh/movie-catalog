@@ -15,7 +15,7 @@
 
 ## Структура
 
-\`\`\`
+```
 app/
 ├── layout.tsx              # корневой layout с Navbar
 ├── page.tsx                # главная
@@ -30,10 +30,10 @@ app/
 
 components/
 ├── Navbar.tsx
-├── FavoriteButton.tsx      # Client
-├── CounterDemo.tsx         # Client
-└── SearchBar.tsx           # Client
-\`\`\`
+├── FavoriteButton.tsx     
+├── CounterDemo.tsx         
+└── SearchBar.tsx           
+```
 
 ## Стек
 
