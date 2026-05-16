@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+## Реализовано
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **File-Based Routing** — страницы `/`, `/catalog`, `/catalog/[id]`, `/about`
+- **Layouts** — глобальный Navbar в `app/layout.tsx`, сайдбар категорий в `app/catalog/layout.tsx`
+- **Server Components** — `/catalog` и `/catalog/[id]` делают fetch на сервере без `useEffect`
+- **Client Components** — `FavoriteButton`, `CounterDemo`, `SearchBar` (паттерн "client islands")
+- **Параллельные запросы** — `Promise.all` на странице фильма (фильм + похожие)
+- **loading.tsx** — скелетон из 6 карточек с `animate-pulse`
+- **API Routes** — REST-эндпоинт `GET/POST /api/movies` с фильтрацией по жанру и валидацией
+- **Metadata** — статические `metadata` на `/`, `/catalog`; динамический `generateMetadata` на странице фильма; шаблон `%s | Каталог фильмов`
+- **SearchBar** 
+- **error.tsx + .env.local** 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Структура
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+\`\`\`
+app/
+├── layout.tsx              # корневой layout с Navbar
+├── page.tsx                # главная
+├── about/page.tsx
+├── api/movies/route.ts     # API-эндпоинт
+└── catalog/
+    ├── layout.tsx          # сайдбар категорий
+    ├── loading.tsx         # скелетон
+    ├── error.tsx           # error boundary
+    ├── page.tsx            # список фильмов (Server) + SearchBar (Client)
+    └── [id]/page.tsx       # страница фильма
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+components/
+├── Navbar.tsx
+├── FavoriteButton.tsx      # Client
+├── CounterDemo.tsx         # Client
+└── SearchBar.tsx           # Client
+\`\`\`
 
-## Learn More
+## Стек
 
-To learn more about Next.js, take a look at the following resources:
+Next.js 15 · React 19 · TypeScript · Tailwind CSS
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+не знаю откуда в проекте агентские файлы от курсора и клауда, они почему то автоматом сюда добавились при установке некста тк у меня стоят на пк(нейронки использовал только чтобы нарисовать схему структуры и причесать ридми)
