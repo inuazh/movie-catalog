@@ -1,4 +1,5 @@
 
+import { Metadata } from "next";
 import Link from "next/link";
 
  export type Movie = {
@@ -6,6 +7,11 @@ import Link from "next/link";
     title: string;
     body: string;
   };
+
+
+export const metadata: Metadata = {
+    title: 'catalog'
+}
 
 export default  async function CatalogPage() {
 

@@ -1,14 +1,31 @@
 import FavoriteButton from "@/components/FavoriteButton";
 import type { Movie } from "../page";
+import { Metadata } from "next";
 
 interface Props {
   params: Promise<{ id: string }>;
 }
 
+export async function generateMetadata({params}: Props): Promise<Metadata> {
+    const{id} = await params;
+    const result = await fetch(
+        `https://jsonplaceholder.typicode.com/posts/${id}`,
+        {cache: 'no-store'}
+    )
+    const movie = await result.json();
+
+    return{
+        title: movie.title,
+        description: movie.body.slice(0,120),
+    }
+
+    
+}
+
 export default async function MoviePage({ params }: Props) {
   const { id } = await params;
 
-  await new Promise(resolve=> setTimeout(resolve, 2000))
+//   await new Promise(resolve=> setTimeout(resolve, 2000))
 
   const [movieRes, similarRes] = await Promise.all([
     fetch(`https://jsonplaceholder.typicode.com/posts/${id}`),
